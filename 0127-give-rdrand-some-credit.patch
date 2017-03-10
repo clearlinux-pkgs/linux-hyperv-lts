@@ -1,4 +1,4 @@
-From ce0d1428a4428d874c7203ce4e1763fe6e93ab62 Mon Sep 17 00:00:00 2001
+From b64c1a8f7e79597f3701560ce320779e6d0dcb73 Mon Sep 17 00:00:00 2001
 From: Arjan van de Ven <arjan@linux.intel.com>
 Date: Fri, 29 Jul 2016 19:10:52 +0000
 Subject: [PATCH 127/131] give rdrand some credit
@@ -26,5 +26,5 @@ index d6876d506220..7699dd31b82b 100644
  	}
  	mix_pool_bytes(r, utsname(), sizeof(*(utsname())));
 -- 
-2.11.0
+2.12.0
 

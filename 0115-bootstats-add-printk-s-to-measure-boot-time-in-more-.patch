@@ -1,4 +1,4 @@
-From 368973439549c5913ca2b847c2a581b10a12c276 Mon Sep 17 00:00:00 2001
+From b30923ea3c4d337d97d8ce3d137af0698ded4c68 Mon Sep 17 00:00:00 2001
 From: Arjan van de Ven <arjan@linux.intel.com>
 Date: Wed, 11 Feb 2015 16:05:23 -0600
 Subject: [PATCH 115/131] bootstats: add printk's to measure boot time in more
@@ -40,10 +40,10 @@ index 5cb272a7a5a3..d28fb7aae4ce 100644
  		free_init_pages("SMP alternatives",
  				(unsigned long)__smp_locks,
 diff --git a/drivers/base/firmware_class.c b/drivers/base/firmware_class.c
-index 22d1760a4278..2f9f136afb8b 100644
+index a95e1e572697..b29467031be6 100644
 --- a/drivers/base/firmware_class.c
 +++ b/drivers/base/firmware_class.c
-@@ -1223,6 +1223,8 @@ request_firmware(const struct firmware **firmware_p, const char *name,
+@@ -1224,6 +1224,8 @@ request_firmware(const struct firmware **firmware_p, const char *name,
  {
  	int ret;
  
@@ -79,5 +79,5 @@ index 0277d1216f80..dc5a6edd3895 100644
  	if (!argv)
  		goto out;
 -- 
-2.11.0
+2.12.0
 

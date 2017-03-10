@@ -1,4 +1,4 @@
-From fb5b81b7e5f2777560304d05a1aec32ec4a8d140 Mon Sep 17 00:00:00 2001
+From 6da3cef87667a2d9966f9580ab2a12361810e851 Mon Sep 17 00:00:00 2001
 From: Matthew Johnson <matthew.johnson@intel.com>
 Date: Mon, 15 Aug 2016 15:57:28 +0000
 Subject: [PATCH 131/131] remove clear ioapic
@@ -14,7 +14,7 @@ delays with this call on 32-core systems.
  1 file changed, 5 insertions(+), 2 deletions(-)
 
 diff --git a/arch/x86/kernel/apic/io_apic.c b/arch/x86/kernel/apic/io_apic.c
-index 48e6d84f173e..9d03c9828c7f 100644
+index d1e25564b3c1..444f2059ad51 100644
 --- a/arch/x86/kernel/apic/io_apic.c
 +++ b/arch/x86/kernel/apic/io_apic.c
 @@ -1426,9 +1426,12 @@ void __init enable_IO_APIC(void)
@@ -33,5 +33,5 @@ index 48e6d84f173e..9d03c9828c7f 100644
  
  void native_disable_io_apic(void)
 -- 
-2.11.0
+2.12.0
 

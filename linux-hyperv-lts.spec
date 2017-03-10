@@ -1,33 +1,39 @@
-Name:           linux-hyperv
-Version:        4.9.7
-Release:        80
+#
+# This is a special configuration of the Linux kernel, based on linux-hyperv
+# package for long-term support
+#
+
+Name:           linux-hyperv-lts
+Version:        4.9.13
+Release:        81
 License:        GPL-2.0
 Summary:        The Linux kernel
 Url:            http://www.kernel.org/
 Group:          kernel
-Source0:        https://www.kernel.org/pub/linux/kernel/v4.x/linux-4.9.7.tar.xz
+Source0:        https://www.kernel.org/pub/linux/kernel/v4.x/linux-4.9.13.tar.xz
 Source1:        config
 Source2:        cmdline
 
-%define kversion %{version}-%{release}.hyperv
+%define kversion %{version}-%{release}.hyperv-lts
 
 BuildRequires:  bash >= 2.03
 BuildRequires:  bc
 BuildRequires:  binutils-dev
 BuildRequires:  elfutils-dev
-BuildRequires:  kmod
 BuildRequires:  make >= 3.78
 BuildRequires:  openssl-dev
 BuildRequires:  flex
 BuildRequires:  bison
+BuildRequires:  kmod
 
-# don't srip .ko files!
+# don't strip .ko files!
 %global __os_install_post %{nil}
 %define debug_package %{nil}
 %define __strip /bin/true
 
-# Serie    00XX: mainline, CVE, bugfixes patches
-Patch0001: cve-2016-8632.patch
+#    000X: cve, bugfixes patches
+
+#    00XY: Mainline patches, upstream backports
 
 # Serie    01XX: Clear Linux patches
 Patch0101: 0101-init-don-t-wait-for-PS-2-at-boot.patch
@@ -76,12 +82,13 @@ Group:          kernel
 Linux kernel extra files
 
 %prep
-%setup -q -n linux-4.9.7
+%setup -q -n linux-4.9.13
 
-# Serie    00XX: mainline, CVE, bugfixes patches
-%patch0001 -p1
+#     000X  cve, bugfixes patches
 
-# Serie    01XX: Clear Linux patches
+#     00XY  Mainline patches, upstream backports
+
+#     01XX  Clear Linux patches
 %patch0101 -p1
 %patch0102 -p1
 %patch0103 -p1
@@ -121,7 +128,7 @@ BuildKernel() {
     MakeTarget=$1
 
     Arch=x86_64
-    ExtraVer="-%{release}.hyperv"
+    ExtraVer="-%{release}.hyperv-lts"
 
     perl -p -i -e "s/^EXTRAVERSION.*/EXTRAVERSION = ${ExtraVer}/" Makefile
 
@@ -129,7 +136,7 @@ BuildKernel() {
     cp config .config
 
     make -s ARCH=$Arch oldconfig > /dev/null
-    make -s CONFIG_DEBUG_SECTION_MISMATCH=y %{?_smp_mflags} ARCH=$Arch  %{?sparse_mflags}
+    make -s CONFIG_DEBUG_SECTION_MISMATCH=y %{?_smp_mflags} ARCH=$Arch %{?sparse_mflags}
 }
 
 BuildKernel bzImage
@@ -147,8 +154,8 @@ InstallKernel() {
     install -m 644 .config    ${KernelDir}/config-${KernelVer}
     install -m 644 System.map ${KernelDir}/System.map-${KernelVer}
     install -m 644 %{SOURCE2} ${KernelDir}/cmdline-${KernelVer}
-    cp  $KernelImage ${KernelDir}/org.clearlinux.hyperv.%{version}-%{release}
-    chmod 755 ${KernelDir}/org.clearlinux.hyperv.%{version}-%{release}
+    cp  $KernelImage ${KernelDir}/org.clearlinux.hyperv-lts.%{version}-%{release}
+    chmod 755 ${KernelDir}/org.clearlinux.hyperv-lts.%{version}-%{release}
 
     mkdir -p %{buildroot}/usr/lib/modules/$KernelVer
     make -s ARCH=$Arch INSTALL_MOD_PATH=%{buildroot}/usr modules_install KERNELRELEASE=$KernelVer
@@ -162,7 +169,6 @@ InstallKernel() {
         rm -f %{buildroot}/usr/lib/modules/${KernelVer}/modules.${i}*
     done
     rm -f %{buildroot}/usr/lib/modules/${KernelVer}/modules.*.bin
-
 }
 
 InstallKernel arch/x86/boot/bzImage
@@ -172,16 +178,15 @@ rm -rf %{buildroot}/usr/lib/firmware
 # Recreate modules indices
 depmod -a -b %{buildroot}/usr %{kversion}
 
-ln -s org.clearlinux.hyperv.%{version}-%{release} %{buildroot}/usr/lib/kernel/default-hyperv
+ln -s org.clearlinux.hyperv-lts.%{version}-%{release} %{buildroot}/usr/lib/kernel/default-hyperv-lts
 
 %files
 %dir /usr/lib/kernel
-%exclude  /usr/lib/modules/%{kversion}/kernel/arch/x86/virtualbox/
 %dir /usr/lib/modules/%{kversion}
 /usr/lib/kernel/config-%{kversion}
 /usr/lib/kernel/cmdline-%{kversion}
-/usr/lib/kernel/org.clearlinux.hyperv.%{version}-%{release}
-/usr/lib/kernel/default-hyperv
+/usr/lib/kernel/org.clearlinux.hyperv-lts.%{version}-%{release}
+/usr/lib/kernel/default-hyperv-lts
 /usr/lib/modules/%{kversion}/kernel
 /usr/lib/modules/%{kversion}/modules.*
 
