@@ -4,13 +4,13 @@
 #
 
 Name:           linux-hyperv-lts
-Version:        4.9.13
-Release:        81
+Version:        4.9.14
+Release:        82
 License:        GPL-2.0
 Summary:        The Linux kernel
 Url:            http://www.kernel.org/
 Group:          kernel
-Source0:        https://www.kernel.org/pub/linux/kernel/v4.x/linux-4.9.13.tar.xz
+Source0:        https://www.kernel.org/pub/linux/kernel/v4.x/linux-4.9.14.tar.xz
 Source1:        config
 Source2:        cmdline
 
@@ -82,7 +82,7 @@ Group:          kernel
 Linux kernel extra files
 
 %prep
-%setup -q -n linux-4.9.13
+%setup -q -n linux-4.9.14
 
 #     000X  cve, bugfixes patches
 
