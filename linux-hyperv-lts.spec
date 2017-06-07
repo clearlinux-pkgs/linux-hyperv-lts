@@ -5,7 +5,7 @@
 
 Name:           linux-hyperv-lts
 Version:        4.9.31
-Release:        101
+Release:        102
 License:        GPL-2.0
 Summary:        The Linux kernel
 Url:            http://www.kernel.org/
@@ -32,7 +32,6 @@ BuildRequires:  kmod
 %define __strip /bin/true
 
 #    000X: cve, bugfixes patches
-Patch0001: cve-2017-9242.patch
 
 #    00XY: Mainline patches, upstream backports
 
@@ -86,7 +85,6 @@ Linux kernel extra files
 %setup -q -n linux-4.9.31
 
 #     000X  cve, bugfixes patches
-%patch0001 -p1
 
 #     00XY  Mainline patches, upstream backports
 
