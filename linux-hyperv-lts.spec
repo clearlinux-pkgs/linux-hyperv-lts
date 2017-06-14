@@ -4,13 +4,13 @@
 #
 
 Name:           linux-hyperv-lts
-Version:        4.9.31
-Release:        103
+Version:        4.9.32
+Release:        104
 License:        GPL-2.0
 Summary:        The Linux kernel
 Url:            http://www.kernel.org/
 Group:          kernel
-Source0:        https://www.kernel.org/pub/linux/kernel/v4.x/linux-4.9.31.tar.xz
+Source0:        https://www.kernel.org/pub/linux/kernel/v4.x/linux-4.9.32.tar.xz
 Source1:        config
 Source2:        cmdline
 
@@ -82,7 +82,7 @@ Group:          kernel
 Linux kernel extra files
 
 %prep
-%setup -q -n linux-4.9.31
+%setup -q -n linux-4.9.32
 
 #     000X  cve, bugfixes patches
 
