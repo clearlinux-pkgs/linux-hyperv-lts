@@ -1,4 +1,4 @@
-From 66cfa0ce30e4ccca914fe5e93effd2d204c8dd6f Mon Sep 17 00:00:00 2001
+From 463659c6dfc8d5db5c34916563f748e2aa5ee4d5 Mon Sep 17 00:00:00 2001
 From: Arjan van de Ven <arjan@linux.intel.com>
 Date: Mon, 14 Mar 2016 11:22:09 -0600
 Subject: [PATCH 106/131] silence rapl
@@ -21,5 +21,5 @@ index 3c71f608b444..450aff027d42 100644
  
  		return -ENODEV;
 -- 
-2.12.0
+2.14.2
 

@@ -1,4 +1,4 @@
-From 462a64af502a3d1d1a8e58a80fd74eac3e6abda7 Mon Sep 17 00:00:00 2001
+From 87ff0ddcbaba577123044e99e3bd914cb98890ff Mon Sep 17 00:00:00 2001
 From: Arjan van de Ven <arjan@linux.intel.com>
 Date: Tue, 2 Aug 2016 16:00:35 +0000
 Subject: [PATCH 129/131] increase readahead amounts
@@ -8,10 +8,10 @@ Subject: [PATCH 129/131] increase readahead amounts
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/include/linux/mm.h b/include/linux/mm.h
-index 0b5b2e4df14e..2e3a2509150e 100644
+index 6c9e1ad12831..da259297e9ce 100644
 --- a/include/linux/mm.h
 +++ b/include/linux/mm.h
-@@ -2108,8 +2108,8 @@ int write_one_page(struct page *page, int wait);
+@@ -2080,8 +2080,8 @@ int write_one_page(struct page *page, int wait);
  void task_dirty_inc(struct task_struct *tsk);
  
  /* readahead.c */
@@ -23,5 +23,5 @@ index 0b5b2e4df14e..2e3a2509150e 100644
  int force_page_cache_readahead(struct address_space *mapping, struct file *filp,
  			pgoff_t offset, unsigned long nr_to_read);
 -- 
-2.12.0
+2.14.2
 

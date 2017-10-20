@@ -1,4 +1,4 @@
-From 1fc0358a3bf8d9cb1ee49a810214989ee7812225 Mon Sep 17 00:00:00 2001
+From 119240fd2d436f5d28cbaa418457cb9bb79b7693 Mon Sep 17 00:00:00 2001
 From: Arjan van de Ven <arjan@linux.intel.com>
 Date: Sat, 19 Mar 2016 21:32:19 -0400
 Subject: [PATCH 109/131] intel_idle: tweak cpuidle cstates
@@ -14,7 +14,7 @@ performance while keeping power efficiency
  1 file changed, 18 insertions(+), 18 deletions(-)
 
 diff --git a/drivers/idle/intel_idle.c b/drivers/idle/intel_idle.c
-index 4466a2f969d7..57db6b0381bb 100644
+index 5ded9b22b015..ffb0abc4959d 100644
 --- a/drivers/idle/intel_idle.c
 +++ b/drivers/idle/intel_idle.c
 @@ -475,7 +475,7 @@ static struct cpuidle_state hsw_cstates[] = {
@@ -180,5 +180,5 @@ index 4466a2f969d7..57db6b0381bb 100644
  		.enter_freeze = intel_idle_freeze, },
  	{
 -- 
-2.12.0
+2.14.2
 
