@@ -4,13 +4,13 @@
 #
 
 Name:           linux-hyperv-lts
-Version:        4.9.58
-Release:        121
+Version:        4.9.59
+Release:        122
 License:        GPL-2.0
 Summary:        The Linux kernel
 Url:            http://www.kernel.org/
 Group:          kernel
-Source0:        https://www.kernel.org/pub/linux/kernel/v4.x/linux-4.9.58.tar.xz
+Source0:        https://www.kernel.org/pub/linux/kernel/v4.x/linux-4.9.59.tar.xz
 Source1:        config
 Source2:        cmdline
 
@@ -83,7 +83,7 @@ Group:          kernel
 Linux kernel extra files
 
 %prep
-%setup -q -n linux-4.9.58
+%setup -q -n linux-4.9.59
 
 #     000X  cve, bugfixes patches
 %patch0001 -p1
