@@ -5,7 +5,7 @@
 
 Name:           linux-hyperv-lts
 Version:        4.9.78
-Release:        141
+Release:        142
 License:        GPL-2.0
 Summary:        The Linux kernel
 Url:            http://www.kernel.org/
