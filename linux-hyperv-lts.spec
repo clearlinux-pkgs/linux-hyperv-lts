@@ -1,30 +1,27 @@
 #
 # This is a special configuration of the Linux kernel, based on linux-hyperv
 # package for long-term support
+# This specialization allows us to optimize memory footprint and boot time.
 #
 
 Name:           linux-hyperv-lts
-Version:        4.9.78
-Release:        144
+Version:        4.19.20
+Release:        145
 License:        GPL-2.0
 Summary:        The Linux kernel
 Url:            http://www.kernel.org/
 Group:          kernel
-Source0:        https://www.kernel.org/pub/linux/kernel/v4.x/linux-4.9.78.tar.xz
+Source0:        https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-4.19.20.tar.xz
 Source1:        config
 Source2:        cmdline
 
-%define kversion %{version}-%{release}.hyperv-lts
+%define ktarget  hyperv-lts
+%define kversion %{version}-%{release}.%{ktarget}
 
-BuildRequires:  bash >= 2.03
-BuildRequires:  bc
-BuildRequires:  binutils-dev
-BuildRequires:  elfutils-dev
-BuildRequires:  make >= 3.78
-BuildRequires:  openssl-dev
-BuildRequires:  flex
-BuildRequires:  bison
-BuildRequires:  kmod
+BuildRequires:  buildreq-kernel
+
+Requires: systemd-bin
+Requires: init-rdahead
 
 # don't strip .ko files!
 %global __os_install_post %{nil}
@@ -32,58 +29,71 @@ BuildRequires:  kmod
 %define __strip /bin/true
 
 #    000X: cve, bugfixes patches
-Patch0001: cve-2017-13693.patch
+Patch0001: CVE-2019-3819.patch
 
 #    00XY: Mainline patches, upstream backports
 
-# Serie    01XX: Clear Linux patches
+#Serie.clr 01XX: Clear Linux patches
 Patch0101: 0101-init-don-t-wait-for-PS-2-at-boot.patch
-Patch0102: 0102-kvm-silence-kvm-unhandled-rdmsr.patch
-Patch0103: 0103-i8042-decrease-debug-message-level-to-info.patch
-Patch0104: 0104-init-do_mounts-recreate-dev-root.patch
-Patch0105: 0105-Increase-the-ext4-default-commit-age.patch
-Patch0106: 0106-silence-rapl.patch
-Patch0107: 0107-pci-pme-wakeups.patch
-Patch0108: 0108-ksm-wakeups.patch
-Patch0109: 0109-intel_idle-tweak-cpuidle-cstates.patch
-Patch0110: 0110-xattr-allow-setting-user.-attributes-on-symlinks-by-.patch
-Patch0111: 0111-init_task-faster-timerslack.patch
-Patch0112: 0112-KVM-x86-Add-hypercall-KVM_HC_RETURN_MEM.patch
-Patch0113: 0113-fs-ext4-fsync-optimize-double-fsync-a-bunch.patch
-Patch0114: 0114-overload-on-wakeup.patch
-Patch0115: 0115-bootstats-add-printk-s-to-measure-boot-time-in-more-.patch
-Patch0116: 0116-fix-initcall-timestamps.patch
-Patch0117: 0117-smpboot-reuse-timer-calibration.patch
-Patch0118: 0118-raid6-add-Kconfig-option-to-skip-raid6-benchmarking.patch
-Patch0119: 0119-Initialize-ata-before-graphics.patch
-Patch0120: 0120-reduce-e1000e-boot-time-by-tightening-sleep-ranges.patch
-Patch0121: 0121-Skip-synchronize_rcu-on-single-CPU-systems.patch
-Patch0122: 0122-Make-a-few-key-drivers-probe-asynchronous.patch
-Patch0123: 0123-use-the-new-async-probing-feature-for-the-hyperv-dri.patch
-Patch0124: 0124-sysrq-Skip-synchronize_rcu-if-there-is-no-old-op.patch
-Patch0125: 0125-printk-end-of-boot.patch
-Patch0126: 0126-Boot-with-rcu-expedite-on.patch
-Patch0127: 0127-give-rdrand-some-credit.patch
-Patch0128: 0128-print-starve.patch
-Patch0129: 0129-increase-readahead-amounts.patch
-Patch0130: 0130-free-initmem-asynchronously.patch
-Patch0131: 0131-remove-clear-ioapic.patch
+Patch0102: 0102-i8042-decrease-debug-message-level-to-info.patch
+Patch0103: 0103-init-do_mounts-recreate-dev-root.patch
+Patch0104: 0104-Increase-the-ext4-default-commit-age.patch
+Patch0105: 0105-silence-rapl.patch
+Patch0106: 0106-pci-pme-wakeups.patch
+Patch0107: 0107-ksm-wakeups.patch
+Patch0108: 0108-intel_idle-tweak-cpuidle-cstates.patch
+Patch0109: 0109-xattr-allow-setting-user.-attributes-on-symlinks-by-.patch
+Patch0110: 0110-init_task-faster-timerslack.patch
+Patch0111: 0111-overload-on-wakeup.patch
+Patch0112: 0112-bootstats-add-printk-s-to-measure-boot-time-in-more-.patch
+Patch0113: 0113-fix-initcall-timestamps.patch
+Patch0114: 0114-smpboot-reuse-timer-calibration.patch
+Patch0115: 0115-raid6-add-Kconfig-option-to-skip-raid6-benchmarking.patch
+Patch0116: 0116-Initialize-ata-before-graphics.patch
+Patch0117: 0117-reduce-e1000e-boot-time-by-tightening-sleep-ranges.patch
+Patch0118: 0118-Skip-synchronize_rcu-on-single-CPU-systems.patch
+Patch0119: 0119-Make-a-few-key-drivers-probe-asynchronous.patch
+Patch0120: 0120-sysrq-Skip-synchronize_rcu-if-there-is-no-old-op.patch
+Patch0121: 0121-printk-end-of-boot.patch
+Patch0122: 0122-Boot-with-rcu-expedite-on.patch
+Patch0123: 0123-give-rdrand-some-credit.patch
+Patch0124: 0124-print-starve.patch
+Patch0125: 0125-increase-readahead-amounts.patch
+Patch0126: 0126-remove-clear-ioapic.patch
+Patch0127: 0127-Migrate-some-systemd-defaults-to-the-kernel-defaults.patch
+Patch0128: 0128-use-lfence-instead-of-rep-and-nop.patch
+Patch0129: 0129-do-accept-in-LIFO-order-for-cache-efficiency.patch
+Patch0130: 0130-zero-extra-registers.patch
+Patch0131: 0131-locking-rwsem-spin-faster.patch
+#Serie.clr.end
 
-# Serie    XYYY: Extra features modules
+#Serie1.name WireGuard
+#Serie1.git  https://git.zx2c4.com/WireGuard
+#Serie1.tag  00bf4f8c8c0ec006633a48fd9ee746b30bb9df17
+Patch1001: 1001-WireGuard-fast-modern-secure-kernel-VPN-tunnel.patch
+#Serie1.end
+
+#Serie2.name dysk
+#Serie1.git  https://github.com/khenidak/dysk
+#Serie1.dir  module
+Patch2001: 2001-Add-dysk-driver.patch
+Patch2002: 2002-dysk-let-compiler-handle-inlining.patch
+Patch2003: 2003-Modify-Kconfig-Makefiles-to-support-dysk.patch
+#Serie2.end
 
 %description
 The Linux kernel.
 
 %package extra
 License:        GPL-2.0
-Summary:        The Linux kernel extra files
+Summary:        The Linux kernel Hyper-V LTS extra files
 Group:          kernel
 
 %description extra
 Linux kernel extra files
 
 %prep
-%setup -q -n linux-4.9.78
+%setup -q -n linux-4.19.20
 
 #     000X  cve, bugfixes patches
 %patch0001 -p1
@@ -123,75 +133,78 @@ Linux kernel extra files
 %patch0130 -p1
 %patch0131 -p1
 
+#Serie1.patch.start
+%patch1001 -p1
+#Serie1.patch.end
+
+#Serie2.patch.start
+%patch2001 -p1
+%patch2002 -p1
+%patch2003 -p1
+#Serie2.patch.end
+
 cp %{SOURCE1} .
 
 %build
 BuildKernel() {
-    MakeTarget=$1
 
+    Target=$1
     Arch=x86_64
-    ExtraVer="-%{release}.hyperv-lts"
+    ExtraVer="-%{release}.${Target}"
 
     perl -p -i -e "s/^EXTRAVERSION.*/EXTRAVERSION = ${ExtraVer}/" Makefile
 
-    make -s mrproper
-    cp config .config
+    make O=${Target} -s mrproper
+    cp config ${Target}/.config
 
-    make -s ARCH=$Arch oldconfig > /dev/null
-    make -s CONFIG_DEBUG_SECTION_MISMATCH=y %{?_smp_mflags} ARCH=$Arch %{?sparse_mflags}
+    make O=${Target} -s ARCH=${Arch} olddefconfig
+    make O=${Target} -s ARCH=${Arch} CONFIG_DEBUG_SECTION_MISMATCH=y %{?_smp_mflags} %{?sparse_mflags}
 }
 
-BuildKernel bzImage
+BuildKernel %{ktarget}
 
 %install
 
 InstallKernel() {
-    KernelImage=$1
 
+    Target=$1
+    Kversion=$2
     Arch=x86_64
-    KernelVer=%{kversion}
     KernelDir=%{buildroot}/usr/lib/kernel
 
     mkdir   -p ${KernelDir}
-    install -m 644 .config    ${KernelDir}/config-${KernelVer}
-    install -m 644 System.map ${KernelDir}/System.map-${KernelVer}
-    install -m 644 %{SOURCE2} ${KernelDir}/cmdline-${KernelVer}
-    cp  $KernelImage ${KernelDir}/org.clearlinux.hyperv-lts.%{version}-%{release}
-    chmod 755 ${KernelDir}/org.clearlinux.hyperv-lts.%{version}-%{release}
+    install -m 644 ${Target}/.config    ${KernelDir}/config-${Kversion}
+    install -m 644 ${Target}/System.map ${KernelDir}/System.map-${Kversion}
+    install -m 644 ${Target}/vmlinux    ${KernelDir}/vmlinux-${Kversion}
+    install -m 644 %{SOURCE2}           ${KernelDir}/cmdline-${Kversion}
+    cp  ${Target}/arch/x86/boot/bzImage ${KernelDir}/org.clearlinux.${Target}.%{version}-%{release}
+    chmod 755 ${KernelDir}/org.clearlinux.${Target}.%{version}-%{release}
 
-    mkdir -p %{buildroot}/usr/lib/modules/$KernelVer
-    make -s ARCH=$Arch INSTALL_MOD_PATH=%{buildroot}/usr modules_install KERNELRELEASE=$KernelVer
+    mkdir -p %{buildroot}/usr/lib/modules
+    make O=${Target} -s ARCH=${Arch} INSTALL_MOD_PATH=%{buildroot}/usr modules_install
 
-    rm -f %{buildroot}/usr/lib/modules/$KernelVer/build
-    rm -f %{buildroot}/usr/lib/modules/$KernelVer/source
+    rm -f %{buildroot}/usr/lib/modules/${Kversion}/build
+    rm -f %{buildroot}/usr/lib/modules/${Kversion}/source
 
-    # Erase some modules index
-    for i in alias ccwmap dep ieee1394map inputmap isapnpmap ofmap pcimap seriomap symbols usbmap softdep devname
-    do
-        rm -f %{buildroot}/usr/lib/modules/${KernelVer}/modules.${i}*
-    done
-    rm -f %{buildroot}/usr/lib/modules/${KernelVer}/modules.*.bin
+    # Kernel default target link
+    ln -s org.clearlinux.${Target}.%{version}-%{release} %{buildroot}/usr/lib/kernel/default-${Target}
 }
 
-InstallKernel arch/x86/boot/bzImage
+InstallKernel %{ktarget} %{kversion}
 
 rm -rf %{buildroot}/usr/lib/firmware
-
-# Recreate modules indices
-depmod -a -b %{buildroot}/usr %{kversion}
-
-ln -s org.clearlinux.hyperv-lts.%{version}-%{release} %{buildroot}/usr/lib/kernel/default-hyperv-lts
 
 %files
 %dir /usr/lib/kernel
 %dir /usr/lib/modules/%{kversion}
 /usr/lib/kernel/config-%{kversion}
 /usr/lib/kernel/cmdline-%{kversion}
-/usr/lib/kernel/org.clearlinux.hyperv-lts.%{version}-%{release}
-/usr/lib/kernel/default-hyperv-lts
+/usr/lib/kernel/org.clearlinux.%{ktarget}.%{version}-%{release}
+/usr/lib/kernel/default-%{ktarget}
 /usr/lib/modules/%{kversion}/kernel
 /usr/lib/modules/%{kversion}/modules.*
 
 %files extra
 %dir /usr/lib/kernel
 /usr/lib/kernel/System.map-%{kversion}
+/usr/lib/kernel/vmlinux-%{kversion}
