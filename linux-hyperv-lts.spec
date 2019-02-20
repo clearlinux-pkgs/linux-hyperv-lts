@@ -6,7 +6,7 @@
 
 Name:           linux-hyperv-lts
 Version:        4.19.24
-Release:        150
+Release:        151
 License:        GPL-2.0
 Summary:        The Linux kernel
 Url:            http://www.kernel.org/
@@ -30,6 +30,7 @@ Requires: init-rdahead
 
 #    000X: cve, bugfixes patches
 Patch0001: 0002-vhost-vsock-fix-vhost-vsock-cid-hashing-inconsistent.patch
+Patch0002: CVE-2019-8912.patch
 
 #    00XY: Mainline patches, upstream backports
 
@@ -97,6 +98,7 @@ Linux kernel extra files
 
 #     000X  cve, bugfixes patches
 %patch0001 -p1
+%patch0002 -p1
 
 #     00XY  Mainline patches, upstream backports
 
