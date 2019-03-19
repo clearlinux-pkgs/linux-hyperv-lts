@@ -29,7 +29,6 @@ Requires: init-rdahead
 %define __strip /bin/true
 
 #    000X: cve, bugfixes patches
-Patch0001: 0002-vhost-vsock-fix-vhost-vsock-cid-hashing-inconsistent.patch
 
 #    00XY: Mainline patches, upstream backports
 
@@ -96,7 +95,6 @@ Linux kernel extra files
 %setup -q -n linux-4.19.30
 
 #     000X  cve, bugfixes patches
-%patch0001 -p1
 
 #     00XY  Mainline patches, upstream backports
 
