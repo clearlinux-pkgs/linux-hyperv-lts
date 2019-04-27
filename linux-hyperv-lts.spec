@@ -129,7 +129,7 @@ Linux kernel extra files
 %patch0127 -p1
 %patch0128 -p1
 %patch0129 -p1
-%patch0130 -p1
+#%patch0130 -p1
 %patch0131 -p1
 
 #Serie1.patch.start
