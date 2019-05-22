@@ -5,13 +5,13 @@
 #
 
 Name:           linux-hyperv-lts
-Version:        4.19.44
-Release:        178
+Version:        4.19.45
+Release:        179
 License:        GPL-2.0
 Summary:        The Linux kernel
 Url:            http://www.kernel.org/
 Group:          kernel
-Source0:        https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-4.19.44.tar.xz
+Source0:        https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-4.19.45.tar.xz
 Source1:        config
 Source2:        cmdline
 
@@ -93,7 +93,7 @@ Group:          kernel
 Linux kernel extra files
 
 %prep
-%setup -q -n linux-4.19.44
+%setup -q -n linux-4.19.45
 
 #     000X  cve, bugfixes patches
 
