@@ -22,6 +22,7 @@ BuildRequires:  buildreq-kernel
 
 Requires: systemd-bin
 Requires: init-rdahead
+Requires: linux-hyperv-lts-license = %{version}-%{release}
 
 # don't strip .ko files!
 %global __os_install_post %{nil}
@@ -99,9 +100,17 @@ The Linux kernel.
 License:        GPL-2.0
 Summary:        The Linux kernel Hyper-V LTS extra files
 Group:          kernel
+Requires:       linux-hyperv-lts-license = %{version}-%{release}
 
 %description extra
 Linux kernel extra files
+
+%package license
+Summary: license components for the linux package.
+Group: Default
+
+%description license
+license components for the linux package.
 
 %prep
 %setup -q -n linux-4.19.46
@@ -216,6 +225,10 @@ InstallKernel %{ktarget} %{kversion}
 
 rm -rf %{buildroot}/usr/lib/firmware
 
+mkdir -p %{buildroot}/usr/share/package-licenses/linux-hyperv-lts
+cp COPYING %{buildroot}/usr/share/package-licenses/linux-hyperv-lts/COPYING
+cp -a LICENSES/* %{buildroot}/usr/share/package-licenses/linux-hyperv-lts
+
 %files
 %dir /usr/lib/kernel
 %dir /usr/lib/modules/%{kversion}
@@ -230,3 +243,7 @@ rm -rf %{buildroot}/usr/lib/firmware
 %dir /usr/lib/kernel
 /usr/lib/kernel/System.map-%{kversion}
 /usr/lib/kernel/vmlinux-%{kversion}
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/linux-hyperv-lts
