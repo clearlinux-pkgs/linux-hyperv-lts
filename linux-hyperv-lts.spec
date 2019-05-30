@@ -28,9 +28,20 @@ Requires: init-rdahead
 %define debug_package %{nil}
 %define __strip /bin/true
 
-#    000X: cve, bugfixes patches
+#cve.start cve patches from 0001 to 009
+Patch0001: CVE-2019-9500.patch
+Patch0002: CVE-2019-9503.patch
+Patch0003: CVE-2019-12455.patch
+Patch0004: CVE-2019-12456.patch
+Patch0005: CVE-2019-12378.patch
+Patch0006: CVE-2019-12379.patch
+Patch0007: CVE-2019-12380.patch
+Patch0008: CVE-2019-12381.patch
+Patch0009: CVE-2019-12382.patch
+#cve.end
 
-#    00XY: Mainline patches, upstream backports
+#mainline: Mainline patches, upstream backport and fixes from 0010 to 0099
+#mainline.end
 
 #Serie.clr 01XX: Clear Linux patches
 Patch0101: 0101-init-don-t-wait-for-PS-2-at-boot.patch
@@ -95,11 +106,22 @@ Linux kernel extra files
 %prep
 %setup -q -n linux-4.19.46
 
-#     000X  cve, bugfixes patches
+#cve.patch.start cve patches
+%patch0001 -p1
+%patch0002 -p1
+%patch0003 -p1
+%patch0004 -p1
+%patch0005 -p1
+%patch0006 -p1
+%patch0007 -p1
+%patch0008 -p1
+%patch0009 -p1
+#cve.patch.end
 
-#     00XY  Mainline patches, upstream backports
+#mainline.patch.start Mainline patches, upstream backport and fixes
+#mainline.patch.end
 
-#     01XX  Clear Linux patches
+#Serie.patch.start Clear Linux patches
 %patch0101 -p1
 %patch0102 -p1
 %patch0103 -p1
@@ -131,6 +153,7 @@ Linux kernel extra files
 %patch0129 -p1
 #%patch0130 -p1
 %patch0131 -p1
+#Serie.patch.end
 
 #Serie1.patch.start
 %patch1001 -p1
