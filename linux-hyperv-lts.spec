@@ -6,7 +6,7 @@
 
 Name:           linux-hyperv-lts
 Version:        4.19.56
-Release:        193
+Release:        194
 License:        GPL-2.0
 Summary:        The Linux kernel
 Url:            http://www.kernel.org/
@@ -78,8 +78,8 @@ Patch0131: 0131-locking-rwsem-spin-faster.patch
 
 #Serie1.name WireGuard
 #Serie1.git  https://git.zx2c4.com/WireGuard
-#Serie1.cmt  91b0a211861d487382a534572844ff29839064f1
-#Serie1.tag  0.0.20190406
+#Serie1.cmt  d8179bf1ed9ecf0c7f9a78ceb0566a7e7b2f4497
+#Serie1.tag  0.0.20190702
 Patch1001: 1001-WireGuard-fast-modern-secure-kernel-VPN-tunnel.patch
 #Serie1.end
 
