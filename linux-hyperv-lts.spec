@@ -29,13 +29,15 @@ Requires: linux-hyperv-lts-license = %{version}-%{release}
 %define debug_package %{nil}
 %define __strip /bin/true
 
-#cve.start cve patches from 0001 to 009
+# kconfig: linux-hyperv-5.1.16-794
+
+#cve.start cve patches from 0001 to 050
 Patch0001: CVE-2019-12455.patch
 Patch0002: CVE-2019-12456.patch
 Patch0003: CVE-2019-12379.patch
 #cve.end
 
-#mainline: Mainline patches, upstream backport and fixes from 0010 to 0099
+#mainline: Mainline patches, upstream backport and fixes from 0051 to 0099
 #mainline.end
 
 #Serie.clr 01XX: Clear Linux patches
@@ -70,7 +72,7 @@ Patch0128: 0128-use-lfence-instead-of-rep-and-nop.patch
 Patch0129: 0129-do-accept-in-LIFO-order-for-cache-efficiency.patch
 Patch0130: 0130-zero-extra-registers.patch
 Patch0131: 0131-locking-rwsem-spin-faster.patch
-#Serie.clr.end
+#Serie.end
 
 #Serie1.name WireGuard
 #Serie1.git  https://git.zx2c4.com/WireGuard
@@ -80,8 +82,8 @@ Patch1001: 1001-WireGuard-fast-modern-secure-kernel-VPN-tunnel.patch
 #Serie1.end
 
 #Serie2.name dysk
-#Serie1.git  https://github.com/khenidak/dysk
-#Serie1.dir  module
+#Serie2.git  https://github.com/khenidak/dysk
+#Serie2.dir  module
 Patch2001: 2001-Add-dysk-driver.patch
 Patch2002: 2002-dysk-let-compiler-handle-inlining.patch
 Patch2003: 2003-Modify-Kconfig-Makefiles-to-support-dysk.patch
