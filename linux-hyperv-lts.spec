@@ -5,13 +5,13 @@
 #
 
 Name:           linux-hyperv-lts
-Version:        4.19.77
-Release:        216
+Version:        4.19.78
+Release:        217
 License:        GPL-2.0
 Summary:        The Linux kernel
 Url:            http://www.kernel.org/
 Group:          kernel
-Source0:        https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-4.19.77.tar.xz
+Source0:        https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-4.19.78.tar.xz
 Source1:        config
 Source2:        cmdline
 
@@ -109,7 +109,7 @@ Group: Default
 license components for the linux package.
 
 %prep
-%setup -q -n linux-4.19.77
+%setup -q -n linux-4.19.78
 
 #cve.patch.start cve patches
 %patch0001 -p1
