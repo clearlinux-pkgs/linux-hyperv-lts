@@ -6,7 +6,7 @@
 
 Name:           linux-hyperv-lts
 Version:        4.19.79
-Release:        218
+Release:        219
 License:        GPL-2.0
 Summary:        The Linux kernel
 Url:            http://www.kernel.org/
@@ -22,6 +22,7 @@ BuildRequires:  buildreq-kernel
 
 Requires: systemd-bin
 Requires: init-rdahead
+Requires: dyskctl-extra
 Requires: linux-hyperv-lts-license = %{version}-%{release}
 
 # don't strip .ko files!
