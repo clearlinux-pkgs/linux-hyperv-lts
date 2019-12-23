@@ -76,8 +76,8 @@ Patch0132: 0132-add-workaround-for-binutils-optimization.patch
 
 #Serie1.name WireGuard
 #Serie1.git  https://git.zx2c4.com/WireGuard
-#Serie1.cmt  d8179bf1ed9ecf0c7f9a78ceb0566a7e7b2f4497
-#Serie1.tag  0.0.20190702
+#Serie1.cmt  edad0d6e99e5133b1e8e865d727a25fff6399cb4
+#Serie1.tag  0.0.20191219
 Patch1001: 1001-WireGuard-fast-modern-secure-kernel-VPN-tunnel.patch
 #Serie1.end
 
