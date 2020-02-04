@@ -1,10 +1,10 @@
 #
 # Automatically generated file; DO NOT EDIT.
-# Linux/x86 4.19.83 Kernel Configuration
+# Linux/x86 4.19.101 Kernel Configuration
 #
 
 #
-# Compiler: gcc (Clear Linux OS for Intel Architecture) 9.2.1 20191107 gcc-9-branch@277898
+# Compiler: gcc (Clear Linux OS for Intel Architecture) 9.2.1 20200111 gcc-9-branch@280154
 #
 CONFIG_CC_IS_GCC=y
 CONFIG_GCC_VERSION=90201
@@ -2739,10 +2739,10 @@ CONFIG_VGA_ARB_MAX_GPUS=10
 #
 # Frame buffer Devices
 #
-CONFIG_FB=y
-CONFIG_FIRMWARE_EDID=y
 CONFIG_FB_CMDLINE=y
 CONFIG_FB_NOTIFY=y
+CONFIG_FB=y
+CONFIG_FIRMWARE_EDID=y
 CONFIG_FB_CFB_FILLRECT=y
 CONFIG_FB_CFB_COPYAREA=y
 CONFIG_FB_CFB_IMAGEBLIT=y
@@ -4393,8 +4393,3 @@ CONFIG_DEBUG_BOOT_PARAMS=y
 CONFIG_UNWINDER_ORC=y
 # CONFIG_UNWINDER_FRAME_POINTER is not set
 # CONFIG_UNWINDER_GUESS is not set
-
-
-# kernel-config sources:
-# FILEVER=/usr/share/kernel-config/base-4.19-4-38
-# FILEVER=/usr/share/kernel-config/mandatory-4.19-4-38
