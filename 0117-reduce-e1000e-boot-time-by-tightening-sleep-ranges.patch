@@ -1,7 +1,7 @@
-From 29f423646e0147235128e9e6c4fee4a78d755d97 Mon Sep 17 00:00:00 2001
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: Arjan van de Ven <arjan@linux.intel.com>
 Date: Thu, 21 Jul 2016 13:33:55 -0500
-Subject: [PATCH 117/131] reduce e1000e boot time by tightening sleep ranges
+Subject: [PATCH] reduce e1000e boot time by tightening sleep ranges
 
 The e1000e driver is a great user of the usleep_range() API,
 and has any nice ranges that in principle help power management.
@@ -27,7 +27,7 @@ Signed-off-by: Arjan van de Ven <arjan@linux.intel.com>
  7 files changed, 28 insertions(+), 28 deletions(-)
 
 diff --git a/drivers/net/ethernet/intel/e1000e/80003es2lan.c b/drivers/net/ethernet/intel/e1000e/80003es2lan.c
-index 257bd59bc9c6..94bce9823336 100644
+index 257bd59..94bce98 100644
 --- a/drivers/net/ethernet/intel/e1000e/80003es2lan.c
 +++ b/drivers/net/ethernet/intel/e1000e/80003es2lan.c
 @@ -680,7 +680,7 @@ static s32 e1000_reset_hw_80003es2lan(struct e1000_hw *hw)
@@ -40,7 +40,7 @@ index 257bd59bc9c6..94bce9823336 100644
  	ctrl = er32(CTRL);
  
 diff --git a/drivers/net/ethernet/intel/e1000e/82571.c b/drivers/net/ethernet/intel/e1000e/82571.c
-index b9309302c29e..2c1bab377b2a 100644
+index b930930..2c1bab3 100644
 --- a/drivers/net/ethernet/intel/e1000e/82571.c
 +++ b/drivers/net/ethernet/intel/e1000e/82571.c
 @@ -959,7 +959,7 @@ static s32 e1000_reset_hw_82571(struct e1000_hw *hw)
@@ -53,7 +53,7 @@ index b9309302c29e..2c1bab377b2a 100644
  	/* Must acquire the MDIO ownership before MAC reset.
  	 * Ownership defaults to firmware after a reset.
 diff --git a/drivers/net/ethernet/intel/e1000e/ethtool.c b/drivers/net/ethernet/intel/e1000e/ethtool.c
-index 02ebf208f48b..08342698386d 100644
+index 02ebf20..0834269 100644
 --- a/drivers/net/ethernet/intel/e1000e/ethtool.c
 +++ b/drivers/net/ethernet/intel/e1000e/ethtool.c
 @@ -1014,7 +1014,7 @@ static int e1000_intr_test(struct e1000_adapter *adapter, u64 *data)
@@ -120,7 +120,7 @@ index 02ebf208f48b..08342698386d 100644
  		}
  		/* Fall Through */
 diff --git a/drivers/net/ethernet/intel/e1000e/ich8lan.c b/drivers/net/ethernet/intel/e1000e/ich8lan.c
-index cdae0efde8e6..395b05701480 100644
+index 7998a73..a1fab77 100644
 --- a/drivers/net/ethernet/intel/e1000e/ich8lan.c
 +++ b/drivers/net/ethernet/intel/e1000e/ich8lan.c
 @@ -271,7 +271,7 @@ static void e1000_toggle_lanphypc_pch_lpt(struct e1000_hw *hw)
@@ -159,7 +159,7 @@ index cdae0efde8e6..395b05701480 100644
  		}
  		e_dbg("ULP_CONFIG_DONE cleared after %dmsec\n", i * 10);
  
-@@ -1999,7 +1999,7 @@ static s32 e1000_check_reset_block_ich8lan(struct e1000_hw *hw)
+@@ -2009,7 +2009,7 @@ static s32 e1000_check_reset_block_ich8lan(struct e1000_hw *hw)
  
  	while ((blocked = !(er32(FWSM) & E1000_ICH_FWSM_RSPCIPHY)) &&
  	       (i++ < 30))
@@ -168,7 +168,7 @@ index cdae0efde8e6..395b05701480 100644
  	return blocked ? E1000_BLK_PHY_RESET : 0;
  }
  
-@@ -2818,7 +2818,7 @@ static s32 e1000_post_phy_reset_ich8lan(struct e1000_hw *hw)
+@@ -2828,7 +2828,7 @@ static s32 e1000_post_phy_reset_ich8lan(struct e1000_hw *hw)
  		return 0;
  
  	/* Allow time for h/w to get to quiescent state after reset */
@@ -177,7 +177,7 @@ index cdae0efde8e6..395b05701480 100644
  
  	/* Perform any necessary post-reset workarounds */
  	switch (hw->mac.type) {
-@@ -2854,7 +2854,7 @@ static s32 e1000_post_phy_reset_ich8lan(struct e1000_hw *hw)
+@@ -2864,7 +2864,7 @@ static s32 e1000_post_phy_reset_ich8lan(struct e1000_hw *hw)
  	if (hw->mac.type == e1000_pch2lan) {
  		/* Ungate automatic PHY configuration on non-managed 82579 */
  		if (!(er32(FWSM) & E1000_ICH_FWSM_FW_VALID)) {
@@ -186,7 +186,7 @@ index cdae0efde8e6..395b05701480 100644
  			e1000_gate_hw_phy_config_ich8lan(hw, false);
  		}
  
-@@ -3875,7 +3875,7 @@ static s32 e1000_update_nvm_checksum_spt(struct e1000_hw *hw)
+@@ -3885,7 +3885,7 @@ static s32 e1000_update_nvm_checksum_spt(struct e1000_hw *hw)
  	 */
  	if (!ret_val) {
  		nvm->ops.reload(hw);
@@ -195,7 +195,7 @@ index cdae0efde8e6..395b05701480 100644
  	}
  
  out:
-@@ -4026,7 +4026,7 @@ static s32 e1000_update_nvm_checksum_ich8lan(struct e1000_hw *hw)
+@@ -4036,7 +4036,7 @@ static s32 e1000_update_nvm_checksum_ich8lan(struct e1000_hw *hw)
  	 */
  	if (!ret_val) {
  		nvm->ops.reload(hw);
@@ -204,7 +204,7 @@ index cdae0efde8e6..395b05701480 100644
  	}
  
  out:
-@@ -4650,7 +4650,7 @@ static s32 e1000_reset_hw_ich8lan(struct e1000_hw *hw)
+@@ -4660,7 +4660,7 @@ static s32 e1000_reset_hw_ich8lan(struct e1000_hw *hw)
  	ew32(TCTL, E1000_TCTL_PSP);
  	e1e_flush();
  
@@ -214,7 +214,7 @@ index cdae0efde8e6..395b05701480 100644
  	/* Workaround for ICH8 bit corruption issue in FIFO memory */
  	if (hw->mac.type == e1000_ich8lan) {
 diff --git a/drivers/net/ethernet/intel/e1000e/mac.c b/drivers/net/ethernet/intel/e1000e/mac.c
-index 4abd55d646c5..e531976f8a67 100644
+index 4abd55d..e531976 100644
 --- a/drivers/net/ethernet/intel/e1000e/mac.c
 +++ b/drivers/net/ethernet/intel/e1000e/mac.c
 @@ -797,7 +797,7 @@ static s32 e1000_poll_fiber_serdes_link_generic(struct e1000_hw *hw)
@@ -227,7 +227,7 @@ index 4abd55d646c5..e531976f8a67 100644
  		if (status & E1000_STATUS_LU)
  			break;
 diff --git a/drivers/net/ethernet/intel/e1000e/netdev.c b/drivers/net/ethernet/intel/e1000e/netdev.c
-index 3ba0c90e7055..e827ace6330f 100644
+index a7b5a47..35a3290 100644
 --- a/drivers/net/ethernet/intel/e1000e/netdev.c
 +++ b/drivers/net/ethernet/intel/e1000e/netdev.c
 @@ -3207,7 +3207,7 @@ static void e1000_configure_rx(struct e1000_adapter *adapter)
@@ -266,7 +266,7 @@ index 3ba0c90e7055..e827ace6330f 100644
  
  	WARN_ON(test_bit(__E1000_RESETTING, &adapter->state));
  
-@@ -6003,7 +6003,7 @@ static int e1000_change_mtu(struct net_device *netdev, int new_mtu)
+@@ -6005,7 +6005,7 @@ static int e1000_change_mtu(struct net_device *netdev, int new_mtu)
  	}
  
  	while (test_and_set_bit(__E1000_RESETTING, &adapter->state))
@@ -275,7 +275,7 @@ index 3ba0c90e7055..e827ace6330f 100644
  	/* e1000e_down -> e1000e_reset dependent on max_frame_size & mtu */
  	adapter->max_frame_size = max_frame;
  	e_info("changing MTU from %d to %d\n", netdev->mtu, new_mtu);
-@@ -6283,7 +6283,7 @@ static int e1000e_pm_freeze(struct device *dev)
+@@ -6285,7 +6285,7 @@ static int e1000e_pm_freeze(struct device *dev)
  		int count = E1000_CHECK_RESET_COUNT;
  
  		while (test_bit(__E1000_RESETTING, &adapter->state) && count--)
@@ -284,7 +284,7 @@ index 3ba0c90e7055..e827ace6330f 100644
  
  		WARN_ON(test_bit(__E1000_RESETTING, &adapter->state));
  
-@@ -6698,7 +6698,7 @@ static int e1000e_pm_runtime_suspend(struct device *dev)
+@@ -6700,7 +6700,7 @@ static int e1000e_pm_runtime_suspend(struct device *dev)
  		int count = E1000_CHECK_RESET_COUNT;
  
  		while (test_bit(__E1000_RESETTING, &adapter->state) && count--)
@@ -294,7 +294,7 @@ index 3ba0c90e7055..e827ace6330f 100644
  		WARN_ON(test_bit(__E1000_RESETTING, &adapter->state));
  
 diff --git a/drivers/net/ethernet/intel/e1000e/nvm.c b/drivers/net/ethernet/intel/e1000e/nvm.c
-index 937f9af22d26..e609f4df86f4 100644
+index 937f9af..e609f4d 100644
 --- a/drivers/net/ethernet/intel/e1000e/nvm.c
 +++ b/drivers/net/ethernet/intel/e1000e/nvm.c
 @@ -392,7 +392,7 @@ s32 e1000e_write_nvm_spi(struct e1000_hw *hw, u16 offset, u16 words, u16 *data)
@@ -307,5 +307,5 @@ index 937f9af22d26..e609f4df86f4 100644
  	}
  
 -- 
-2.20.1
+https://clearlinux.org
 

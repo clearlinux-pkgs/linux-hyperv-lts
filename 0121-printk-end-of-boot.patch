@@ -1,17 +1,17 @@
-From 84d14b40c03acb9ca88c7f9a90ce047c81e9f444 Mon Sep 17 00:00:00 2001
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: Arjan van de Ven <arjan@linux.intel.com>
 Date: Sat, 11 Jun 2016 22:12:51 +0000
-Subject: [PATCH 121/131] printk end of boot
+Subject: [PATCH] printk end of boot
 
 ---
  init/main.c | 1 +
  1 file changed, 1 insertion(+)
 
 diff --git a/init/main.c b/init/main.c
-index 49a1ff94d23a..13ac19ddfed8 100644
+index d92cc85..67152b1 100644
 --- a/init/main.c
 +++ b/init/main.c
-@@ -1087,6 +1087,7 @@ static int __ref kernel_init(void *unused)
+@@ -1085,6 +1085,7 @@ static int __ref kernel_init(void *unused)
  		       ramdisk_execute_command, ret);
  	}
  
@@ -20,5 +20,5 @@ index 49a1ff94d23a..13ac19ddfed8 100644
  	 * We try each of these until one succeeds.
  	 *
 -- 
-2.20.1
+https://clearlinux.org
 

@@ -1,7 +1,7 @@
-From d3aaf4f7e7575f9e019aee3e67dd51c7a1ef5518 Mon Sep 17 00:00:00 2001
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: Miguel Bernal Marin <miguel.bernal.marin@linux.intel.com>
 Date: Fri, 20 Nov 2015 14:01:26 -0600
-Subject: [PATCH 103/131] init: do_mounts: recreate /dev/root
+Subject: [PATCH] init: do_mounts: recreate /dev/root
 
 Rootfs shows as is mounted in /dev/root, but this devices is not present in
 /dev directory.
@@ -12,7 +12,7 @@ Signed-off-by: Miguel Bernal Marin <miguel.bernal.marin@linux.intel.com>
  1 file changed, 8 insertions(+)
 
 diff --git a/init/do_mounts.c b/init/do_mounts.c
-index bc55bc3fd464..0b5368e58364 100644
+index bc55bc3..0b5368e 100644
 --- a/init/do_mounts.c
 +++ b/init/do_mounts.c
 @@ -539,6 +539,7 @@ void __init mount_root(void)
@@ -38,5 +38,5 @@ index bc55bc3fd464..0b5368e58364 100644
  
  static bool is_tmpfs;
 -- 
-2.20.1
+https://clearlinux.org
 
