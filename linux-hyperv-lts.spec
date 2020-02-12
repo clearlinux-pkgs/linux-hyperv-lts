@@ -6,7 +6,7 @@
 
 Name:           linux-hyperv-lts
 Version:        4.19.103
-Release:        243
+Release:        244
 License:        GPL-2.0
 Summary:        The Linux kernel
 Url:            http://www.kernel.org/
@@ -71,7 +71,6 @@ Patch0128: 0128-use-lfence-instead-of-rep-and-nop.patch
 Patch0129: 0129-do-accept-in-LIFO-order-for-cache-efficiency.patch
 Patch0130: 0130-zero-extra-registers.patch
 Patch0131: 0131-locking-rwsem-spin-faster.patch
-Patch0132: 0132-add-workaround-for-binutils-optimization.patch
 #Serie.end
 
 #Serie1.name WireGuard
@@ -150,7 +149,6 @@ license components for the linux package.
 %patch0129 -p1
 %patch0130 -p1
 %patch0131 -p1
-%patch0132 -p1
 #Serie.patch.end
 
 #Serie1.patch.start
