@@ -9,7 +9,7 @@ Clearly print when we're starved for entropy
  1 file changed, 2 insertions(+)
 
 diff --git a/drivers/char/random.c b/drivers/char/random.c
-index 5c5114a..57b5dc9 100644
+index b53c595..47a2d33 100644
 --- a/drivers/char/random.c
 +++ b/drivers/char/random.c
 @@ -1930,9 +1930,11 @@ _random_read(int nonblock, char __user *buf, size_t nbytes)
