@@ -11,10 +11,10 @@ Signed-off-by: Arjan van de Ven <arjan@linux.intel.com>
  1 file changed, 6 insertions(+), 2 deletions(-)
 
 diff --git a/mm/ksm.c b/mm/ksm.c
-index b3ea0f0..124a99f 100644
+index d021bcf..7a25bba 100644
 --- a/mm/ksm.c
 +++ b/mm/ksm.c
-@@ -2404,8 +2404,12 @@ static int ksm_scan_thread(void *nothing)
+@@ -2412,8 +2412,12 @@ static int ksm_scan_thread(void *nothing)
  		try_to_freeze();
  
  		if (ksmd_should_run()) {
