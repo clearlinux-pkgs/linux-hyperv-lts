@@ -52,10 +52,10 @@ index 8e9213b..ae1c340 100644
  	__module_get(THIS_MODULE);
  	ret = _request_firmware(firmware_p, name, device, NULL, 0,
 diff --git a/init/main.c b/init/main.c
-index ec78f23..603fc0c 100644
+index fdfef08..3177cf8 100644
 --- a/init/main.c
 +++ b/init/main.c
-@@ -824,7 +824,7 @@ trace_initcall_start_cb(void *data, initcall_t fn)
+@@ -823,7 +823,7 @@ trace_initcall_start_cb(void *data, initcall_t fn)
  {
  	ktime_t *calltime = (ktime_t *)data;
  
