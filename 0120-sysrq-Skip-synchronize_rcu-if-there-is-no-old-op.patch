@@ -18,7 +18,7 @@ Signed-off-by: Miguel Bernal Marin <miguel.bernal.marin@linux.intel.com>
  1 file changed, 3 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/tty/sysrq.c b/drivers/tty/sysrq.c
-index cee0274..a8c12c3 100644
+index cee0274806c5..a8c12c364bfa 100644
 --- a/drivers/tty/sysrq.c
 +++ b/drivers/tty/sysrq.c
 @@ -1072,8 +1072,10 @@ static int __sysrq_swap_key_ops(int key, struct sysrq_key_op *insert_op_p,

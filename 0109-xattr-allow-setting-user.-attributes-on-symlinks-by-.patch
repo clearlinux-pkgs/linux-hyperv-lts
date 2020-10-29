@@ -23,7 +23,7 @@ Signed-off-by: Alan Cox <alan@linux.intel.com>
  1 file changed, 8 insertions(+), 6 deletions(-)
 
 diff --git a/fs/xattr.c b/fs/xattr.c
-index 470ee0a..49d1664 100644
+index 470ee0af3200..49d1664802f6 100644
 --- a/fs/xattr.c
 +++ b/fs/xattr.c
 @@ -118,15 +118,17 @@ xattr_permission(struct inode *inode, const char *name, int mask)

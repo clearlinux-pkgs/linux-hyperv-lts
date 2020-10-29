@@ -10,7 +10,7 @@ To help boot time, several drivers can safely be marked for probing asynchronous
  2 files changed, 2 insertions(+)
 
 diff --git a/drivers/net/ethernet/intel/e1000e/netdev.c b/drivers/net/ethernet/intel/e1000e/netdev.c
-index 237667f..e33ff12 100644
+index 237667f9c4ca..e33ff12f8c9e 100644
 --- a/drivers/net/ethernet/intel/e1000e/netdev.c
 +++ b/drivers/net/ethernet/intel/e1000e/netdev.c
 @@ -7569,6 +7569,7 @@ static struct pci_driver e1000_driver = {
@@ -22,7 +22,7 @@ index 237667f..e33ff12 100644
  	.shutdown = e1000_shutdown,
  	.err_handler = &e1000_err_handler
 diff --git a/sound/pci/hda/hda_intel.c b/sound/pci/hda/hda_intel.c
-index d432459..2135a00 100644
+index d43245937db7..2135a0070c7f 100644
 --- a/sound/pci/hda/hda_intel.c
 +++ b/sound/pci/hda/hda_intel.c
 @@ -2826,6 +2826,7 @@ static struct pci_driver azx_driver = {

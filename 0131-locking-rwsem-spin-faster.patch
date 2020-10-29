@@ -9,7 +9,7 @@ tweak rwsem owner spinning a bit
  1 file changed, 3 insertions(+), 2 deletions(-)
 
 diff --git a/kernel/locking/rwsem-xadd.c b/kernel/locking/rwsem-xadd.c
-index e41e4b4..1b139a7 100644
+index e41e4b4b5267..1b139a71d5d7 100644
 --- a/kernel/locking/rwsem-xadd.c
 +++ b/kernel/locking/rwsem-xadd.c
 @@ -405,6 +405,7 @@ static inline bool rwsem_can_spin_on_owner(struct rw_semaphore *sem)

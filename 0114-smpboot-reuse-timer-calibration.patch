@@ -9,7 +9,7 @@ NO point recalibrating for known-constant tsc... saves 200ms+ of boot time.
  1 file changed, 3 insertions(+)
 
 diff --git a/arch/x86/kernel/tsc.c b/arch/x86/kernel/tsc.c
-index 03b7529..8e70d24 100644
+index 03b7529333a6..8e70d24ac5f9 100644
 --- a/arch/x86/kernel/tsc.c
 +++ b/arch/x86/kernel/tsc.c
 @@ -1503,6 +1503,9 @@ unsigned long calibrate_delay_is_known(void)
