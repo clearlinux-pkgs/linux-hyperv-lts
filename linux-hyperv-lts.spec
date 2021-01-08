@@ -6,7 +6,7 @@
 
 Name:           linux-hyperv-lts
 Version:        4.19.165
-Release:        308
+Release:        309
 License:        GPL-2.0
 Summary:        The Linux kernel
 Url:            http://www.kernel.org/
