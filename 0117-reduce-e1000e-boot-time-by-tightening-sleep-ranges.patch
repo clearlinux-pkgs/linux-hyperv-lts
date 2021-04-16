@@ -40,10 +40,10 @@ index 257bd59bc9c6..94bce9823336 100644
  	ctrl = er32(CTRL);
  
 diff --git a/drivers/net/ethernet/intel/e1000e/82571.c b/drivers/net/ethernet/intel/e1000e/82571.c
-index b9309302c29e..2c1bab377b2a 100644
+index 16653e94009e..1fd4406173a8 100644
 --- a/drivers/net/ethernet/intel/e1000e/82571.c
 +++ b/drivers/net/ethernet/intel/e1000e/82571.c
-@@ -959,7 +959,7 @@ static s32 e1000_reset_hw_82571(struct e1000_hw *hw)
+@@ -961,7 +961,7 @@ static s32 e1000_reset_hw_82571(struct e1000_hw *hw)
  	ew32(TCTL, tctl);
  	e1e_flush();
  
@@ -227,7 +227,7 @@ index 4abd55d646c5..e531976f8a67 100644
  		if (status & E1000_STATUS_LU)
  			break;
 diff --git a/drivers/net/ethernet/intel/e1000e/netdev.c b/drivers/net/ethernet/intel/e1000e/netdev.c
-index 7216825e049c..237667f9c4ca 100644
+index 6bbe7afdf30c..da378b1b659b 100644
 --- a/drivers/net/ethernet/intel/e1000e/netdev.c
 +++ b/drivers/net/ethernet/intel/e1000e/netdev.c
 @@ -3205,7 +3205,7 @@ static void e1000_configure_rx(struct e1000_adapter *adapter)
@@ -266,7 +266,7 @@ index 7216825e049c..237667f9c4ca 100644
  
  	WARN_ON(test_bit(__E1000_RESETTING, &adapter->state));
  
-@@ -6007,7 +6007,7 @@ static int e1000_change_mtu(struct net_device *netdev, int new_mtu)
+@@ -6011,7 +6011,7 @@ static int e1000_change_mtu(struct net_device *netdev, int new_mtu)
  	}
  
  	while (test_and_set_bit(__E1000_RESETTING, &adapter->state))
@@ -275,7 +275,7 @@ index 7216825e049c..237667f9c4ca 100644
  	/* e1000e_down -> e1000e_reset dependent on max_frame_size & mtu */
  	adapter->max_frame_size = max_frame;
  	e_info("changing MTU from %d to %d\n", netdev->mtu, new_mtu);
-@@ -6287,7 +6287,7 @@ static int e1000e_pm_freeze(struct device *dev)
+@@ -6291,7 +6291,7 @@ static int e1000e_pm_freeze(struct device *dev)
  		int count = E1000_CHECK_RESET_COUNT;
  
  		while (test_bit(__E1000_RESETTING, &adapter->state) && count--)
@@ -284,7 +284,7 @@ index 7216825e049c..237667f9c4ca 100644
  
  		WARN_ON(test_bit(__E1000_RESETTING, &adapter->state));
  
-@@ -6708,7 +6708,7 @@ static int e1000e_pm_runtime_suspend(struct device *dev)
+@@ -6712,7 +6712,7 @@ static int e1000e_pm_runtime_suspend(struct device *dev)
  		int count = E1000_CHECK_RESET_COUNT;
  
  		while (test_bit(__E1000_RESETTING, &adapter->state) && count--)
