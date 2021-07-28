@@ -227,7 +227,7 @@ index 4abd55d646c5..e531976f8a67 100644
  		if (status & E1000_STATUS_LU)
  			break;
 diff --git a/drivers/net/ethernet/intel/e1000e/netdev.c b/drivers/net/ethernet/intel/e1000e/netdev.c
-index 6bbe7afdf30c..da378b1b659b 100644
+index 398f5951d11c..378e5ffa7f89 100644
 --- a/drivers/net/ethernet/intel/e1000e/netdev.c
 +++ b/drivers/net/ethernet/intel/e1000e/netdev.c
 @@ -3205,7 +3205,7 @@ static void e1000_configure_rx(struct e1000_adapter *adapter)
