@@ -39,10 +39,10 @@ index 918a23704c0c..e4a599772a08 100644
  		free_init_pages("SMP alternatives",
  				(unsigned long)__smp_locks,
 diff --git a/drivers/base/firmware_loader/main.c b/drivers/base/firmware_loader/main.c
-index 24410a0d6df0..abdff9d2d487 100644
+index cfa5e598a0dc..96785298dd10 100644
 --- a/drivers/base/firmware_loader/main.c
 +++ b/drivers/base/firmware_loader/main.c
-@@ -633,6 +633,8 @@ request_firmware(const struct firmware **firmware_p, const char *name,
+@@ -634,6 +634,8 @@ request_firmware(const struct firmware **firmware_p, const char *name,
  {
  	int ret;
  
