@@ -10,7 +10,7 @@ Subject: [PATCH] do accept() in LIFO order for cache efficiency
  3 files changed, 27 insertions(+), 1 deletion(-)
 
 diff --git a/include/linux/wait.h b/include/linux/wait.h
-index ed7c122cb31f..a3b499cf1ffd 100644
+index 1d726d79063c..15bc9d41f2bd 100644
 --- a/include/linux/wait.h
 +++ b/include/linux/wait.h
 @@ -149,6 +149,7 @@ static inline bool wq_has_sleeper(struct wait_queue_head *wq_head)
@@ -21,7 +21,7 @@ index ed7c122cb31f..a3b499cf1ffd 100644
  extern void remove_wait_queue(struct wait_queue_head *wq_head, struct wait_queue_entry *wq_entry);
  
  static inline void __add_wait_queue(struct wait_queue_head *wq_head, struct wait_queue_entry *wq_entry)
-@@ -1109,6 +1110,7 @@ do {										\
+@@ -1135,6 +1136,7 @@ do {										\
   */
  void prepare_to_wait(struct wait_queue_head *wq_head, struct wait_queue_entry *wq_entry, int state);
  void prepare_to_wait_exclusive(struct wait_queue_head *wq_head, struct wait_queue_entry *wq_entry, int state);
@@ -30,7 +30,7 @@ index ed7c122cb31f..a3b499cf1ffd 100644
  void finish_wait(struct wait_queue_head *wq_head, struct wait_queue_entry *wq_entry);
  long wait_woken(struct wait_queue_entry *wq_entry, unsigned mode, long timeout);
 diff --git a/kernel/sched/wait.c b/kernel/sched/wait.c
-index 5dd47f1103d1..7964d9c2d719 100644
+index a44a57fb9540..43f841f77ff5 100644
 --- a/kernel/sched/wait.c
 +++ b/kernel/sched/wait.c
 @@ -36,6 +36,17 @@ void add_wait_queue_exclusive(struct wait_queue_head *wq_head, struct wait_queue
@@ -51,7 +51,7 @@ index 5dd47f1103d1..7964d9c2d719 100644
  void remove_wait_queue(struct wait_queue_head *wq_head, struct wait_queue_entry *wq_entry)
  {
  	unsigned long flags;
-@@ -249,6 +260,19 @@ prepare_to_wait_exclusive(struct wait_queue_head *wq_head, struct wait_queue_ent
+@@ -256,6 +267,19 @@ prepare_to_wait_exclusive(struct wait_queue_head *wq_head, struct wait_queue_ent
  }
  EXPORT_SYMBOL(prepare_to_wait_exclusive);
  
