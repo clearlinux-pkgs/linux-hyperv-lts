@@ -12,10 +12,10 @@ Signed-off-by: Jose Carlos Venegas Munoz <jos.c.venegas.munoz@intel.com>
  1 file changed, 5 insertions(+), 5 deletions(-)
 
 diff --git a/drivers/input/serio/i8042.c b/drivers/input/serio/i8042.c
-index c60593c8d2be..a7f3e8e30bcc 100644
+index 082afbf088d6..8de14a38598f 100644
 --- a/drivers/input/serio/i8042.c
 +++ b/drivers/input/serio/i8042.c
-@@ -608,7 +608,7 @@ static int i8042_enable_kbd_port(void)
+@@ -612,7 +612,7 @@ static int i8042_enable_kbd_port(void)
  	if (i8042_command(&i8042_ctr, I8042_CMD_CTL_WCTR)) {
  		i8042_ctr &= ~I8042_CTR_KBDINT;
  		i8042_ctr |= I8042_CTR_KBDDIS;
@@ -24,7 +24,7 @@ index c60593c8d2be..a7f3e8e30bcc 100644
  		return -EIO;
  	}
  
-@@ -627,7 +627,7 @@ static int i8042_enable_aux_port(void)
+@@ -631,7 +631,7 @@ static int i8042_enable_aux_port(void)
  	if (i8042_command(&i8042_ctr, I8042_CMD_CTL_WCTR)) {
  		i8042_ctr &= ~I8042_CTR_AUXINT;
  		i8042_ctr |= I8042_CTR_AUXDIS;
@@ -33,7 +33,7 @@ index c60593c8d2be..a7f3e8e30bcc 100644
  		return -EIO;
  	}
  
-@@ -719,7 +719,7 @@ static int __init i8042_check_mux(void)
+@@ -723,7 +723,7 @@ static int i8042_check_mux(void)
  	i8042_ctr &= ~I8042_CTR_AUXINT;
  
  	if (i8042_command(&i8042_ctr, I8042_CMD_CTL_WCTR)) {
@@ -42,7 +42,7 @@ index c60593c8d2be..a7f3e8e30bcc 100644
  		return -EIO;
  	}
  
-@@ -942,7 +942,7 @@ static int i8042_controller_selftest(void)
+@@ -946,7 +946,7 @@ static int i8042_controller_selftest(void)
  	do {
  
  		if (i8042_command(&param, I8042_CMD_CTL_TEST)) {
@@ -51,7 +51,7 @@ index c60593c8d2be..a7f3e8e30bcc 100644
  			return -ENODEV;
  		}
  
-@@ -964,7 +964,7 @@ static int i8042_controller_selftest(void)
+@@ -968,7 +968,7 @@ static int i8042_controller_selftest(void)
  	pr_info("giving up on controller selftest, continuing anyway...\n");
  	return 0;
  #else
