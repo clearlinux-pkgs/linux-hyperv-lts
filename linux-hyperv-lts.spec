@@ -5,13 +5,13 @@
 #
 
 Name:           linux-hyperv-lts
-Version:        4.19.242
-Release:        378
+Version:        4.19.243
+Release:        379
 License:        GPL-2.0
 Summary:        The Linux kernel
 Url:            http://www.kernel.org/
 Group:          kernel
-Source0:        https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-4.19.242.tar.xz
+Source0:        https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-4.19.243.tar.xz
 Source1:        config
 Source2:        cmdline
 
@@ -108,7 +108,7 @@ Group: Default
 license components for the linux package.
 
 %prep
-%setup -q -n linux-4.19.242
+%setup -q -n linux-4.19.243
 
 #cve.patch.start cve patches
 #cve.patch.end
